@@ -1,0 +1,39 @@
+{
+  "name": "FileManager-s3",
+  "version": "1.0.1",
+  "type": "module",
+  "description": "This is an FileManager NPM Package for s3 bucket.",
+  "main": "dist/index.js",
+  "scripts": {
+    "build:dev": "rollup -c --environment NODE_ENV:development",
+    "build": "rollup -c --environment NODE_ENV:production"
+  },
+  "keywords": [
+    "react",
+    "npm",
+    "aws",
+    "s3 bucket",
+    "FileManager"
+  ],
+  "author": "Jitendra Singh",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/JitendraSingh9587/Filemanager-s3"
+  },
+  "bugs": {
+    "url": "https://github.com/JitendraSingh9587/Filemanager-s3/issues"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.24.3",
+    "@babel/preset-env": "^7.24.3",
+    "@babel/preset-react": "^7.24.1",
+    "@rollup/plugin-babel": "^6.0.4",
+    "rollup": "^4.9.0",
+    "rollup-plugin-terser": "^7.0.2"
+  }
+}

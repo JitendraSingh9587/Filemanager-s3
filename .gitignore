@@ -1,0 +1,7 @@
+.vscode
+dist
+node_modules
+EmptyNpm*.tgz
+.DS_Store
+package-lock.json
+FileManager-s3*.tgz
