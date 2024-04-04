@@ -6,7 +6,8 @@
   "main": "dist/index.js",
   "scripts": {
     "build:dev": "rollup -c --environment NODE_ENV:development",
-    "build": "rollup -c --environment NODE_ENV:production"
+    "build": "rollup -c --environment NODE_ENV:production",
+    "clean": "rm -rf dist/ FileManager-s3-1.0.1.tgz && npm run build:dev &&  npm pack"
   },
   "keywords": [
     "react",
@@ -30,6 +31,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.24.3",
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@babel/preset-env": "^7.24.3",
     "@babel/preset-react": "^7.24.1",
     "@rollup/plugin-babel": "^6.0.4",
