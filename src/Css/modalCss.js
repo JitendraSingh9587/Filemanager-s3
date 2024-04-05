@@ -79,13 +79,13 @@ export const modalCss = `
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-      border-radius: .25rem;
-    margin-bottom: .25rem;
-    border: 1px solid #dee2e6;
-    padding: .5rem;
+  border-radius: 0.25rem;
+  margin-bottom: 0.25rem;
+  border: 1px solid #dee2e6;
+  padding: 0.5rem;
 }
 .fileManager_Wrappper_main img.p1 {
-  padding: .25rem;
+  padding: 0.25rem;
 }
 .folder_wrapper {
   width: 24%;
@@ -115,21 +115,24 @@ export const modalCss = `
 .loader {
   width: 90px;
   height: 14px;
-  background: radial-gradient(circle closest-side,#000 92%,#0000) calc(100%/3) 0/calc(100%/4) 100%;
+  background: radial-gradient(circle closest-side, #000 92%, #0000)
+    calc(100% / 3) 0 / calc(100% / 4) 100%;
   animation: l2 0.5s infinite linear;
 }
 @keyframes l2 {
-    100% {background-position: 0 0}
+  100% {
+    background-position: 0 0;
+  }
 }
 .uploadFileWrappper {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    margin-bottom: 1.5rem;
-    border: 3px dashed;
-    padding: 30px;
-    user-select: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 1.5rem;
+  border: 3px dashed;
+  padding: 30px;
+  user-select: none;
 }
 .uploadFileWrappper span {
   font-weight: 600;
@@ -143,32 +146,32 @@ export const modalCss = `
   margin-bottom: 0px;
 }
 .uploadFileWrappper button {
-    margin-top: 1rem;
-    background: #fff;
-    padding: 5px 1rem;
-    border-radius: .25rem;
-    font-size: 14px;
+  margin-top: 1rem;
+  background: #fff;
+  padding: 5px 1rem;
+  border-radius: 0.25rem;
+  font-size: 14px;
 }
 .ZropdoneWrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .formselection label {
-    padding: 0 5px 0 0;
-    overflow-wrap: anywhere;
-    font-size: 12px;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
+  padding: 0 5px 0 0;
+  overflow-wrap: anywhere;
+  font-size: 12px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 .formselection {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
 }
 
 .deleteWrapper {
@@ -182,37 +185,79 @@ export const modalCss = `
   background-color: rgba(0, 0, 0, 0.5);
 }
 
-.Deletecontainer {
+.Deletecontainer,
+.addFolderModal {
   background: #fff;
-  border-radius: .25rem;
+  border-radius: 0.25rem;
   padding: 1rem;
+  min-width: 300px;
 }
 .cancelbtnDeleteWrapper {
-      display: flex;
-    justify-content: flex-end;
-    margin: .5rem 0;
+  display: flex;
+  justify-content: flex-end;
+  margin: 0.5rem 0;
 }
 .cancelbtnDeleteWrapper button {
-      border: 0;
-    background: #fff;
+  border: 0;
+  background: #fff;
 }
 .deletebtns {
-    padding: 0 1rem;
-    margin-top: 1rem;
-    display: flex;
-    align-items: center;
+  padding: 0 1rem;
+  margin-top: 1rem;
+  display: flex;
+  align-items: center;
 }
 
 .deletebtns button {
-    width: 100%;
-    border: 0;
-    border-radius: .25rem;
-    padding: .35rem 0;
-    margin: 0 .5rem;
+  width: 100%;
+  border: 0;
+  border-radius: 0.25rem;
+  padding: 0.35rem 0;
+  margin: 0 0.5rem;
 }
 .cancelbtnDeleteWrapper svg {
-    height: 15px;
-    width: 15px;
-    cursor: pointer;
+  height: 15px;
+  width: 15px;
+  cursor: pointer;
 }
+.addFolderModal h4 {
+  font-size: 15px;
+  margin: 0;
+}
+
+.folderHeading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 0.5rem;
+}
+.AddnewFolderWrapper {
+  display: flex;
+  margin: 1rem 0 0 0;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.AddnewFolderWrapper input {
+  padding: 5px 15px;
+  font-size: 14px;
+  font-weight: 600;
+  min-width: 250px;
+}
+.addFolderModal error {
+  font-size: 11px;
+  line-height: 15px;
+  margin-top: 7px;
+  color: red;
+}
+.AddnewFolderWrapper button {
+  background: #1e91cf;
+  color: #fff;
+  border: 2px solid #1e91cf;
+  font-size: 14px;
+  border-radius: 2px;
+  margin-top: 0.5rem;
+  padding: 5px 30px;
+}
+
  `;
