@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { modalCss } from "./Css/modalCss";
 import AWS from "aws-sdk";
+import { ContextMenuTrigger } from "react-contextmenu";
 
 export const GetLocalStorage = (key, isEncode = false) => {
   if (typeof window === "undefined") {
@@ -270,9 +271,9 @@ function FileManagerS3({
     if (typeof selectedImage !== "string") {
       selectedImage = `https://${aws.bucket_name}.s3.${aws.region}.amazonaws.com/${selectedImage.Key}`;
     }
-    selectedImg
-      ? selectedImg(selectedImage)
-      : console.log("🚀 ~ selectImageFunction ~ selectedImage:", selectedImage);
+    onselect(selectedImage);
+    console.log("🚀 ~ selectImageFunction ~ selectedImage:", selectedImage);
+    handleClose();
   }
 
   function handleUploadBtn() {
@@ -440,6 +441,144 @@ function FileManagerS3({
                 Check All
               </button>
             </div>
+            {loader ? (
+              <div className="d-flex justify-content-center align-items-center my-5 py-5">
+                Loading
+              </div>
+            ) : (
+              <React.Fragment>
+                <div className="d-flex flex-wrap fileManager_Wrappper_main position-relative my-4">
+                  {showUploadInput && (
+                    <div
+                      className="d-flex justify-content-center align-items-center w-100  uploadFileWrappper mb-4"
+                      // {...getRootProps()}
+                    >
+                      {/* <input {...getInputProps()} /> */}
+                      <div className="d-flex flex-column align-items-center">
+                        <span>Drop File AnyWhere to Upload</span>
+                        <span className="or">or</span>
+                        <button className="mt-3 bg-white px-3 py-1 rounded">
+                          Select Files
+                        </button>
+                      </div>
+                    </div>
+                  )}
+
+                  {folders.map((item, index) => {
+                    return (
+                      <div key={index} className="folder_wrapper">
+                        <div className="d-flex flex-column align-items-center h-100 justify-content-center ">
+                          <ContextMenuTrigger
+                            id="folderContenxt"
+                            collect={() => {
+                              handleContextMenu(item), setSelectedShow(item);
+                            }}
+                          >
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              viewBox="0 0 512 512"
+                              width="120px"
+                              onDoubleClickCapture={() =>
+                                handleFolderClick(item.Prefix)
+                              }
+                              onClick={() => setSelectedShow(item)}
+                              style={
+                                selectedShow?.Prefix === item.Prefix
+                                  ? {
+                                      opacity: "1",
+                                    }
+                                  : { opacity: "0.6" }
+                              }
+                            >
+                              <path
+                                fill="#1e91cf"
+                                d="M464 128H272l-64-64H48C21.5 64 0 85.5 0 112v288c0 26.5 21.5 48 48 48h416c26.5 0 48-21.5 48-48V176c0-26.5-21.5-48-48-48z"
+                              />
+                            </svg>
+                            {/* <FormControlLabel
+                            className={`${
+                              selectedShow?.Prefix === item.Prefix &&
+                              "SelectedItem"
+                            } formselection`}
+                            control={
+                              <Checkbox
+                                checked={selected.some(
+                                  (selectedItem) =>
+                                    selectedItem?.Key === item.Prefix
+                                )}
+                                onChange={() => handleSelect(item)}
+                                name={item.Prefix}
+                              />
+                            }
+                            label={
+                              folderPrifix !== ""
+                                ? item.Prefix.split(folderPrifix)[1]?.replace(
+                                    /\//g,
+                                    ""
+                                  )
+                                : item.Prefix.replace(/\//g, "")
+                            }
+                          /> */}
+                          </ContextMenuTrigger>
+                        </div>
+                      </div>
+                    );
+                  })}
+                  {listFiles.map((item, index) => {
+                    if (folderPrifix !== item.Key) {
+                      let imageUrl = `https://${BucketName}.s3.${awsregion}.amazonaws.com/${item.Key}`;
+                      return (
+                        <div key={index} className="folder_wrapper">
+                          <div className="d-flex flex-column align-items-center">
+                            <ContextMenuTrigger
+                              id="ImageContext"
+                              collect={() => {
+                                handleContextMenu(item), setSelectedShow(item);
+                              }}
+                            >
+                              <img
+                                className={`${
+                                  selectedShow?.Key === item.Key ? "p-1" : "p-2"
+                                } border rounded mb-1`}
+                                onDoubleClickCapture={() =>
+                                  selectImageFunction(imageUrl)
+                                }
+                                src={imageUrl}
+                                alt={item.Key}
+                                onClick={() => setSelectedShow(item)}
+                              />
+
+                              {/* <FormControlLabel
+                              className={`${
+                                selectedShow?.Key === item.Key && "SelectedItem"
+                              } formselection`}
+                              control={
+                                <Checkbox
+                                  checked={selected.some(
+                                    (selectedItem) =>
+                                      selectedItem?.Key === item.Key
+                                  )}
+                                  onChange={() => {
+                                    handleSelect(item), setSelectedShow(item);
+                                  }}
+                                  name={item.Key}
+                                />
+                              }
+                              label={
+                                folderPrifix !== ""
+                                  ? item.Key.split(folderPrifix)[1]
+                                  : item.Key
+                              }
+                            /> */}
+                            </ContextMenuTrigger>
+                          </div>
+                        </div>
+                      );
+                    }
+                  })}
+                </div>
+              </React.Fragment>
+            )}
           </div>
         </div>
       )}
