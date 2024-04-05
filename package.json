@@ -26,6 +26,7 @@
     "url": "https://github.com/JitendraSingh9587/Filemanager-s3/issues"
   },
   "dependencies": {
+    "aws-sdk": "^2.1592.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
