@@ -170,4 +170,49 @@ export const modalCss = `
     justify-content: center;
     gap: 3px;
 }
+
+.deleteWrapper {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.Deletecontainer {
+  background: #fff;
+  border-radius: .25rem;
+  padding: 1rem;
+}
+.cancelbtnDeleteWrapper {
+      display: flex;
+    justify-content: flex-end;
+    margin: .5rem 0;
+}
+.cancelbtnDeleteWrapper button {
+      border: 0;
+    background: #fff;
+}
+.deletebtns {
+    padding: 0 1rem;
+    margin-top: 1rem;
+    display: flex;
+    align-items: center;
+}
+
+.deletebtns button {
+    width: 100%;
+    border: 0;
+    border-radius: .25rem;
+    padding: .35rem 0;
+    margin: 0 .5rem;
+}
+.cancelbtnDeleteWrapper svg {
+    height: 15px;
+    width: 15px;
+    cursor: pointer;
+}
  `;
