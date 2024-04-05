@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useState } from "react";
 import { modalCss } from "./Css/modalCss";
 import AWS from "aws-sdk";
 import { ContextMenuTrigger } from "react-contextmenu";
+import { useDropzone } from "react-dropzone";
 
 export const GetLocalStorage = (key, isEncode = false) => {
   if (typeof window === "undefined") {
@@ -88,14 +89,8 @@ function FileManagerS3({
   });
 
   useEffect(() => {
-    console.log(
-      "accessKeyId, secretAccessKey, awsregion, BucketName",
-      accessKeyId,
-      secretAccessKey,
-      awsregion,
-      BucketName
-    );
-  }, []);
+    console.log("🚀 ~ selected:", selected);
+  }, [selected]);
 
   const s3 = new AWS.S3();
 
@@ -113,7 +108,6 @@ function FileManagerS3({
         console.log(err, err.stack);
         setLoader(false);
       } else {
-        console.log("🚀 ~ s3.listObjectsV2 ~ data:", data);
         setFolders(data.CommonPrefixes);
         setListFiles(data.Contents);
         if (
@@ -226,12 +220,12 @@ function FileManagerS3({
     }
   }, []);
 
-  // const { getRootProps, getInputProps, isDragActive } = useDropzone({
-  //   accept: {
-  //     "image/jpeg": [".jpeg", ".png"],
-  //   },
-  //   onDrop,
-  // });
+  const { getRootProps, getInputProps, isDragActive } = useDropzone({
+    accept: {
+      "image/jpeg": [".jpeg", ".png"],
+    },
+    onDrop,
+  });
 
   function handleFolderClick(path) {
     setFolderPrifix(path);
@@ -442,19 +436,16 @@ function FileManagerS3({
               </button>
             </div>
             {loader ? (
-              <div className="d-flex justify-content-center align-items-center my-5 py-5">
-                Loading
+              <div className="LoaderWprapperFileManager">
+                <div class="loader"></div>
               </div>
             ) : (
               <React.Fragment>
-                <div className="d-flex flex-wrap fileManager_Wrappper_main position-relative my-4">
+                <div className="fileManager_Wrappper_main">
                   {showUploadInput && (
-                    <div
-                      className="d-flex justify-content-center align-items-center w-100  uploadFileWrappper mb-4"
-                      // {...getRootProps()}
-                    >
-                      {/* <input {...getInputProps()} /> */}
-                      <div className="d-flex flex-column align-items-center">
+                    <div className="uploadFileWrappper" {...getRootProps()}>
+                      <input {...getInputProps()} />
+                      <div className="ZropdoneWrapper">
                         <span>Drop File AnyWhere to Upload</span>
                         <span className="or">or</span>
                         <button className="mt-3 bg-white px-3 py-1 rounded">
@@ -467,7 +458,7 @@ function FileManagerS3({
                   {folders.map((item, index) => {
                     return (
                       <div key={index} className="folder_wrapper">
-                        <div className="d-flex flex-column align-items-center h-100 justify-content-center ">
+                        <div>
                           <ContextMenuTrigger
                             id="folderContenxt"
                             collect={() => {
@@ -495,6 +486,31 @@ function FileManagerS3({
                                 d="M464 128H272l-64-64H48C21.5 64 0 85.5 0 112v288c0 26.5 21.5 48 48 48h416c26.5 0 48-21.5 48-48V176c0-26.5-21.5-48-48-48z"
                               />
                             </svg>
+                            <span
+                              className={`${
+                                selectedShow?.Prefix === item.Prefix &&
+                                "SelectedItem"
+                              } formselection`}
+                            >
+                              <input
+                                type="checkbox"
+                                name={item.Prefix}
+                                value="Bike"
+                                checked={selected.some(
+                                  (selectedItem) =>
+                                    selectedItem?.Key === item.Prefix
+                                )}
+                                onChange={() => handleSelect(item)}
+                              />
+                              <label for={item.Prefix}>
+                                {folderPrifix !== ""
+                                  ? item.Prefix.split(folderPrifix)[1]?.replace(
+                                      /\//g,
+                                      ""
+                                    )
+                                  : item.Prefix.replace(/\//g, "")}
+                              </label>
+                            </span>
                             {/* <FormControlLabel
                             className={`${
                               selectedShow?.Prefix === item.Prefix &&
@@ -506,7 +522,10 @@ function FileManagerS3({
                                   (selectedItem) =>
                                     selectedItem?.Key === item.Prefix
                                 )}
-                                onChange={() => handleSelect(item)}
+                                checked={selected.some(
+                                  (selectedItem) =>
+                                    selectedItem?.Key === item.Prefix
+                                )}
                                 name={item.Prefix}
                               />
                             }
@@ -529,7 +548,7 @@ function FileManagerS3({
                       let imageUrl = `https://${BucketName}.s3.${awsregion}.amazonaws.com/${item.Key}`;
                       return (
                         <div key={index} className="folder_wrapper">
-                          <div className="d-flex flex-column align-items-center">
+                          <div>
                             <ContextMenuTrigger
                               id="ImageContext"
                               collect={() => {
@@ -539,7 +558,7 @@ function FileManagerS3({
                               <img
                                 className={`${
                                   selectedShow?.Key === item.Key ? "p-1" : "p-2"
-                                } border rounded mb-1`}
+                                }`}
                                 onDoubleClickCapture={() =>
                                   selectImageFunction(imageUrl)
                                 }
@@ -547,6 +566,28 @@ function FileManagerS3({
                                 alt={item.Key}
                                 onClick={() => setSelectedShow(item)}
                               />
+                              <span
+                                className={`${
+                                  selectedShow?.Key === item.Key &&
+                                  "SelectedItem"
+                                } formselection`}
+                              >
+                                <input
+                                  type="checkbox"
+                                  name={item.Key}
+                                  value="Bike"
+                                  checked={selected.some(
+                                    (selectedItem) =>
+                                      selectedItem?.Key === item.Key
+                                  )}
+                                  onChange={() => handleSelect(item)}
+                                />
+                                <label for={item.Key}>
+                                  {folderPrifix !== ""
+                                    ? item.Key.split(folderPrifix)[1]
+                                    : item.Key}
+                                </label>
+                              </span>
 
                               {/* <FormControlLabel
                               className={`${

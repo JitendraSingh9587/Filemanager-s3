@@ -79,22 +79,95 @@ export const modalCss = `
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+      border-radius: .25rem;
+    margin-bottom: .25rem;
+    border: 1px solid #dee2e6;
+    padding: .5rem;
+}
+.fileManager_Wrappper_main img.p1 {
+  padding: .25rem;
 }
 .folder_wrapper {
   width: 24%;
 }
 .fileManager_Wrappper_main {
   grid-gap: 10px 5px;
-  gap: 10px 5px;
+  gap: 15px 5px;
   outline: 0;
   display: flex;
   flex-wrap: wrap;
   margin: 1.5rem 0;
+  max-height: 500px;
+  overflow: auto;
 }
 .react-contextmenu-wrapper {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
+.LoaderWprapperFileManager {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 3rem 0;
+  padding: 3rem 0;
+}
+.loader {
+  width: 90px;
+  height: 14px;
+  background: radial-gradient(circle closest-side,#000 92%,#0000) calc(100%/3) 0/calc(100%/4) 100%;
+  animation: l2 0.5s infinite linear;
+}
+@keyframes l2 {
+    100% {background-position: 0 0}
+}
+.uploadFileWrappper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 1.5rem;
+    border: 3px dashed;
+    padding: 30px;
+    user-select: none;
+}
+.uploadFileWrappper span {
+  font-weight: 600;
+  color: #000;
+  font-size: 16px;
+  margin-bottom: 5px;
+}
+.uploadFileWrappper span.or {
+  font-weight: 400;
+  font-size: 14px;
+  margin-bottom: 0px;
+}
+.uploadFileWrappper button {
+    margin-top: 1rem;
+    background: #fff;
+    padding: 5px 1rem;
+    border-radius: .25rem;
+    font-size: 14px;
+}
+.ZropdoneWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.formselection label {
+    padding: 0 5px 0 0;
+    overflow-wrap: anywhere;
+    font-size: 12px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
 
+.formselection {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+}
  `;
