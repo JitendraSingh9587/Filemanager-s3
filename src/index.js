@@ -142,6 +142,7 @@ function FileManagerS3({
           resolve(); // Resolve the promise when upload is complete
         })
         .catch((err) => {
+          getListingDataFromAWS();
           reject(err); // Reject the promise if there's an error
         });
     });
@@ -287,8 +288,6 @@ function FileManagerS3({
   const handleOnSelect = () => {
     onselect();
   };
-  ``;
-
   return (
     <>
       {openModal && (

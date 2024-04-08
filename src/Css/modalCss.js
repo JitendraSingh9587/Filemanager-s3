@@ -244,7 +244,7 @@ export const modalCss = `
   font-weight: 600;
   min-width: 250px;
 }
-.addFolderModal error {
+.addFolderModal span.error {
   font-size: 11px;
   line-height: 15px;
   margin-top: 7px;

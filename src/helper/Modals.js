@@ -92,7 +92,7 @@ export function AddNewFolder({
                   }
                 }}
               />
-              <error>{addresserror}</error>
+              <span className="error">{addresserror}</span>
               <button className="mt-2" onClick={() => handleFolderBtn()}>
                 Add Folder
               </button>
