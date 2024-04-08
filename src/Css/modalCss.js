@@ -259,5 +259,34 @@ export const modalCss = `
   margin-top: 0.5rem;
   padding: 5px 30px;
 }
+.FileManagerWrapper ::-webkit-scrollbar {
+  height: 4px;
+  width: 4px;
+}
 
+.FileManagerWrapper ::-webkit-scrollbar-track {
+  border-radius: 0px;
+  background-color: #dfe9eb;
+}
+
+.FileManagerWrapper ::-webkit-scrollbar-track:hover {
+  background-color: #b8c0c2;
+}
+
+.FileManagerWrapper ::-webkit-scrollbar-track:active {
+  background-color: #b8c0c2;
+}
+
+.FileManagerWrapper ::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+  background-color: #1e91cf;
+}
+
+.FileManagerWrapper ::-webkit-scrollbar-thumb:hover {
+  background-color: #1e91cf;
+}
+
+.FileManagerWrapper ::-webkit-scrollbar-thumb:active {
+  background-color: #1e91cf;
+}
  `;
