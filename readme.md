@@ -1,16 +1,33 @@
-### Install The Node Modules
+### Install The Package
 
     npm i -f
 
-### Change Package Inforamtion In Package.json
+### Use this below code for intigration
 
-### Create Build
+    import FileManager from "FileManager-s3";
 
-    npm run build       = for Production
-    npm run build:dev   = for devlopment
+    function App() {
+    const [open, setOpen] = useState(false);
+    function handleCloseFilemanager() {
+      setOpen(false);
+    }
+    function handleSlectedUrl(Url) {
+      console.log("🚀 ~ handleSlectedUrl ~ Url:", Url);
+    }
+    return (
+      <div className="App">
+        <button onClick={() => setOpen(!open)}>Open FileManager</button>
+        <FileManager
+          openModal={open}
+          handleClose={handleCloseFilemanager}
+          onselect={handleSlectedUrl}
+          accessKeyId={awsAccessKeyID}
+          secretAccessKey={AwssecretAccessKey}
+          awsregion={awsRegion}
+          BucketName={AwsBucketname}
+        />
+      </div>
+    );
+    }
 
-### Create Local Package for Testing
-
-    npm pack
-
-###
+    export default App;
