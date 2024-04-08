@@ -7,7 +7,7 @@
   "scripts": {
     "build:dev": "rollup -c --environment NODE_ENV:development",
     "build": "rollup -c --environment NODE_ENV:production",
-    "clean": "rm -rf dist/ FileManager-s3-1.0.1.tgz && npm run build &&  npm pack"
+    "clean": "rm -rf dist/ FileManager-s3-1.0.1.tgz && npm run build:dev &&  npm pack"
   },
   "keywords": [
     "react",

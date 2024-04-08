@@ -1,54 +1,28 @@
-export const GetLocalStorage = (key, isEncode = false) => {
+export const GetLocalStorage = (key) => {
   if (typeof window === "undefined") {
     return false;
   }
-
-  if (isEncode) {
-    let encodedKey = btoa(JSON.stringify(key));
-    if (localStorage.getItem(encodedKey)) {
-      let data = JSON.parse(atob(localStorage.getItem(encodedKey)));
-      return data;
-    } else {
-      return false;
-    }
+  if (localStorage.getItem(key)) {
+    let data = JSON.parse(localStorage.getItem(key));
+    return data;
   } else {
-    if (localStorage.getItem(key)) {
-      let data = JSON.parse(localStorage.getItem(key));
-      return data;
-    } else {
-      return false;
-    }
+    return false;
   }
 };
 
-export const SaveLocalStorage = (key, value, isEncode = false) => {
+export const SaveLocalStorage = (key, value) => {
   if (typeof window !== "undefined") {
-    if (isEncode) {
-      let encodedKey = btoa(JSON.stringify(key));
-      let encodedData = btoa(JSON.stringify(value));
-      localStorage.setItem(encodedKey, encodedData);
-    } else {
-      localStorage.setItem(key, JSON.stringify(value));
-    }
+    localStorage.setItem(key, JSON.stringify(value));
   }
 };
 
-export const RemoveLocalStorage = (key, isEncode = false) => {
+export const RemoveLocalStorage = (key) => {
   if (typeof window == "undefined") {
     return false;
   }
-  if (isEncode) {
-    let encodedKey = btoa(JSON.stringify(key));
-    if (localStorage.getItem(encodedKey)) {
-      localStorage.removeItem(encodedKey);
-    } else {
-      return false;
-    }
+  if (localStorage.getItem(key)) {
+    localStorage.removeItem(key);
   } else {
-    if (localStorage.getItem(key)) {
-      localStorage.removeItem(key);
-    } else {
-      return false;
-    }
+    return false;
   }
 };

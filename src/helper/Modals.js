@@ -85,12 +85,7 @@ export function AddNewFolder({
                 className="cancelbtnDeleteWrapper"
                 onClick={handleCloseModal}
               >
-                <svg
-                  width={800}
-                  height={800}
-                  viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
+                <svg width={800} height={800} viewBox="0 0 24 24">
                   <defs>
                     <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="a">
                       <stop stopColor="#FC4343" offset="0%" />

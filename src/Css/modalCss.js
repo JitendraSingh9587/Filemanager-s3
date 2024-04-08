@@ -25,11 +25,11 @@ export const modalCss = `
   margin: 20px;
 }
 .FileManagerCloseBtn {
-  width: 20px;
+  width: 15px;
   height: 15px;
   position: absolute;
-  top: 10px;
-  right: 10px;
+  top: 15px;
+  right: 15px;
   cursor: pointer;
 }
 .FileManagerHeading {
@@ -37,7 +37,7 @@ export const modalCss = `
   justify-content: space-between;
   align-items: center;
   margin-bottom: 1.5rem;
-  margin-top: 1rem;
+  margin-top: 1.5rem;
 }
 .FileManagerHeading h5 {
   margin: 0;
